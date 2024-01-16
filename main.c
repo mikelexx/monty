@@ -3,6 +3,8 @@ int main(int argc, char *argv[])
 {
 	FILE *file;
 	char line_input[256];
+	const char delim[] = " \n";
+	char *first, *second;
 
 	if (argc != 2)
 	{
@@ -17,8 +19,13 @@ int main(int argc, char *argv[])
 	}
 	while (fgets(line_input, sizeof(line_input), file) != NULL)
 	{
-		printf("%s", line_input);
-
+                first = strtok(line_input, delim);
+		while (first != NULL)
+		{
+			second = strtok(NULL, delim);
+			break;
+		}
+		printf("%s %s\n", first, second);
 	}
 	fclose(file);
 	return (0);
