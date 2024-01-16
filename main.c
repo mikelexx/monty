@@ -16,7 +16,32 @@ int is_valid_instruction(int line_number, char *opcode)
 	fprintf(stderr, "L%d: unknown instruction %s\n",line_number,opcode);
 	return (EXIT_FAILURE);
 }
-
+void push_el_to_stack(stack_t **stack, int n )
+{
+	stack_t *curr = *stack, *head;
+	
+	curr->n = n;
+	head = malloc(sizeof(stack_t));
+	if (head == NULL)
+	{
+		fprintf(stdout, "Error: malloc failed\n");
+		return (EXIT_FAILURE);
+	}
+	head->next = curr;
+	curr->prev = head;
+	(*stack) = head;
+	return;
+}
+void display_stack(stack_t **stack)
+{
+	stack_t *tmp = (*stack)->next;
+	while (tmp)
+	{
+		fprintf(stdout, "%d\n", tmp->n);
+		tmp = tmp->next;
+	}
+	return;
+}
 int main(int argc, char *argv[])
 {
 	FILE *file;
@@ -24,6 +49,7 @@ int main(int argc, char *argv[])
 	const char delim[] = " \n";
 	char *first, *second;
 	int line_number = 1;
+	stack_t *stack = malloc(sizeof(stack_t)); 
 
 	if (argc != 2)
 	{
@@ -57,17 +83,16 @@ int main(int argc, char *argv[])
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
 				return (EXIT_FAILURE);
 			}
+			push_el_to_stack(&stack, atoi(second));
 		}
-		
+		if (strcmp(first, "pall") == 0)
+		{
+			display_stack(&stack);
+		}
+		line_number++;
 	}
+	
 
 	fclose(file);
 	return (0);
 }
-
-
-	
-
-
-
-
