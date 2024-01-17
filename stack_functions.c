@@ -3,7 +3,7 @@
  * push_el_to_stack - appends an element on top of stack
  * @stack: stack data structure for storing stack_t objects
  * @n: data to be stored.
- * Return: 0 for success else EXIT_FAILURE.
+ * Return: 0 for success else 1.
  */
 int push_el_to_stack(stack_t **stack, int n)
 {
@@ -14,7 +14,7 @@ int push_el_to_stack(stack_t **stack, int n)
 	if (head == NULL)
 	{
 		fprintf(stdout, "Error: malloc failed\n");
-		return (EXIT_FAILURE);
+		return (1);
 	}
 	head->next = curr;
 	curr->prev = head;

@@ -36,4 +36,8 @@ int push_el_to_stack(stack_t **stack, int n);
 void display_stack(stack_t **stack);
 int is_valid_push_operand(char *operand, int line_number);
 int is_valid_opcode(int line_number, char *opcode);
+int can_open_file(FILE *file, char *filename);
+int exec_push_instruction(int line_number, char *opcode_operand, stack_t **stack);
+char *get_opcode_operand(char *opcode, const char delim[]);
+
 #endif
