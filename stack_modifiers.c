@@ -17,7 +17,6 @@ void push(cmd_t *cmd)
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		printf("Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new->n = cmd->arg;
