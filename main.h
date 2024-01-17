@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+extern const char *OPCODES[2];
 typedef struct stack_s
 {
         int n;
@@ -31,4 +32,8 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+int push_el_to_stack(stack_t **stack, int n);
+void display_stack(stack_t **stack);
+int is_valid_push_operand(char *operand, int line_number);
+int is_valid_opcode(int line_number, char *opcode);
 #endif
