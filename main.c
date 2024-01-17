@@ -9,7 +9,7 @@ const char *OPCODES[3] = {"push", "pall", "pint"};
 int main(int argc, char *argv[])
 {
 	char line_input[256];
-	const char delim[] = " \n";
+	const char delim[] = "\t\n";
 	char *opcode, *opcode_operand;
 	int line_number = 1;
 	FILE *file = fopen(argv[1], "r");
@@ -18,32 +18,28 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage %s file\n", argv[0]);
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	file = fopen(argv[1], "r");
 	if (can_open_file(file, argv[1]) != 0)
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	while (fgets(line_input, sizeof(line_input), file) != NULL)
 	{
 		opcode = strtok(line_input, delim);
 		opcode_operand = get_opcode_operand(opcode, delim);
-		if (opcode == NULL)
-			continue;
 		if (is_valid_opcode(line_number, opcode) != 0)
-			return (EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		if (strcmp(opcode, "push") == 0)
 		{
 			if (exec_push_instruction(line_number, opcode_operand, &stack) != 0)
-				return (EXIT_FAILURE);
+				exit(EXIT_FAILURE);
 		}
 		if (strcmp(opcode, "pall") == 0)
-		{
 			display_stack(&stack);
-		}
 		if (strcmp(opcode, "pint") == 0)
 		{
 			if (print_stack_top(&stack, line_number) != 0)
-				return (EXIT_FAILURE);
+				exit(EXIT_FAILURE);
 		}
 		line_number++;
 	}
