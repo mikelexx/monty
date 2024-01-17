@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-extern const char *OPCODES[2];
+extern const char *OPCODES[3];
 typedef struct stack_s
 {
         int n;
@@ -39,5 +39,5 @@ int is_valid_opcode(int line_number, char *opcode);
 int can_open_file(FILE *file, char *filename);
 int exec_push_instruction(int line_number, char *opcode_operand, stack_t **stack);
 char *get_opcode_operand(char *opcode, const char delim[]);
-
+int print_stack_top(stack_t **stack, int line_number);
 #endif

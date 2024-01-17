@@ -1,13 +1,11 @@
 #include "main.h"
-const char *OPCODES[2] = {"push", "pall"};
+const char *OPCODES[3] = {"push", "pall", "pint"};
 /**
  * main - interpretes the opcode instructions contained in the bytecode file.
  * @argc: count of arguments to the program main.
  * @argv: list of the arguments passed to program.
  * Return: 0 for sucess else EXIT_FAILURE.
  */
-
-
 int main(int argc, char *argv[])
 {
 	char line_input[256];
@@ -39,6 +37,11 @@ int main(int argc, char *argv[])
 		if (strcmp(opcode, "pall") == 0)
 		{
 			display_stack(&stack);
+		}
+		if (strcmp(opcode, "pint") == 0)
+		{
+			if (print_stack_top(&stack, line_number) != 0)
+				return (EXIT_FAILURE);
 		}
 		line_number++;
 	}

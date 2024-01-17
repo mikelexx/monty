@@ -29,7 +29,7 @@ int is_valid_opcode(int line_number, char *opcode)
 {
 	int i
 		;
-	for (i = 0; i < 2; i++)
+	for (i = 0; i < 3; i++)
 	{
 		if (strcmp(opcode, OPCODES[i]) == 0)
 		{

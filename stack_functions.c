@@ -35,3 +35,20 @@ void display_stack(stack_t **stack)
 		tmp = tmp->next;
 	}
 }
+/**
+ * print_stack_top - prints the value at the top of stack.
+ * @stack: pointer to a head of stack.
+ * @line_number: line number of file containing opcode that caused this \
+ * function to be executed.
+ * Return: 0 for sucess otherwise 1.
+ */
+int print_stack_top(stack_t **stack, int line_number)
+{
+	if ((*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		return (1);
+	}
+	fprintf(stdout, "%d\n", (*stack)->next->n);
+	return (0);
+}
