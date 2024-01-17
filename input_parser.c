@@ -9,7 +9,7 @@
  */
 void parse_input(char *lineptr, int line_number, stack_t **head)
 {
-	const char delim[] = " \t\n";
+	const char delim[] = " \t\r\n";
 	char *arg, *opcode;
 	int len;
 	cmd_t cmd;
