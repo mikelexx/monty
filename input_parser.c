@@ -20,12 +20,17 @@ void parse_input(char *lineptr, int line_number, stack_t **head)
 	if (strcmp(opcode, "push") == 0)
 	{
 		arg = strtok(NULL, delim);
+		if (arg == NULL)
+		{
+			fprintf("L%d: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 		len = strlen(arg);
 		while (len > 0)
 		{
 			if (arg[len - 1] < 48 || arg[len - 1] > 57)
 			{
-				printf("L%d: usage: push integer\n", line_number);
+				fprintf(stderr, "L%d: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
 			len--;
