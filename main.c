@@ -9,7 +9,7 @@ const char *OPCODES[3] = {"push", "pall", "pint"};
 int main(int argc, char *argv[])
 {
 	char line_input[256];
-	const char delim[] = "\t\n";
+	const char delim[] = " \t\n";
 	char *opcode, *opcode_operand;
 	int line_number = 1;
 	FILE *file = fopen(argv[1], "r");
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		fprintf(stderr, "Usage %s file\n", argv[0]);
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	file = fopen(argv[1], "r");
@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
 				exit(EXIT_FAILURE);
 		}
 		line_number++;
+
 	}
 	fclose(file);
 	return (0);
