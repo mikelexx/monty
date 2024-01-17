@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * can_open_file - checks and prints if file can be opened:
  * @file: pointer to file location.

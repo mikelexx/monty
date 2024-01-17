@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * exec_push_instructoin - exectutes push operation \
  * to stack given  the operand.

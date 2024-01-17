@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * is_valid_push_operand - checks if the operand to push opcode is valid.
  * @operand: argument to push opcode.

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * push_el_to_stack - appends an element on top of stack
  * @stack: stack data structure for storing stack_t objects

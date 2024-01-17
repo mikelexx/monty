@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 const char *OPCODES[3] = {"push", "pall", "pint"};
 /**
  * main - interpretes the opcode instructions contained in the bytecode file.
