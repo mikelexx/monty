@@ -9,6 +9,7 @@
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
+#define  _GNU_SOURCE
 #include<stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,6 +20,13 @@ typedef struct stack_s
         struct stack_s *prev;
         struct stack_s *next;
 } stack_t;
+typedef struct cmd_s
+{
+	int arg; 
+	char *opcode;
+	int line_number;
+	stack_t **head;
+} cmd_t;
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -30,14 +38,12 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+        void (*f)(cmd_t *cmd);
 } instruction_t;
-int push_el_to_stack(stack_t **stack, int n);
-void display_stack(stack_t **stack);
-int is_valid_push_operand(char *operand, int line_number);
-int is_valid_opcode(int line_number, char *opcode);
-int can_open_file(FILE *file, char *filename);
-int exec_push_instruction(int line_number, char *opcode_operand, stack_t **stack);
-char *get_opcode_operand(char *opcode, const char delim[]);
-int print_stack_top(stack_t **stack, int line_number);
+int is_valid_arg(char *arg);
+void parse_input(char *line_ptr,int line_number, stack_t **head);
+void run(cmd_t *cmd);
+void push(cmd_t *cmd);
+void pall(cmd_t *cmd);
+void pint(cmd_t *cmd);
 #endif
