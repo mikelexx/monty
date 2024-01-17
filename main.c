@@ -27,7 +27,9 @@ int main(int argc, char *argv[])
 	{
 		opcode = strtok(line_input, delim);
 		opcode_operand = get_opcode_operand(opcode, delim);
-		if (is_valid_opcode(line_number, opcode) != 0 && opcode != NULL)
+		if (opcode == NULL)
+			continue;
+		if (is_valid_opcode(line_number, opcode) != 0)
 			return (EXIT_FAILURE);
 		if (strcmp(opcode, "push") == 0)
 		{
