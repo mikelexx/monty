@@ -8,7 +8,8 @@ void swap(cmd_t *cmd)
 	stack_t **head = cmd->head;
 	stack_t *first, *middle, *last;
 
-	if (head == NULL || *head == NULL || (*head)->next == NULL)
+	if (cmd == NULL ||
+			head == NULL || *head == NULL || (*head)->next == NULL)
 	{
 		fprintf(stderr,
 		"L%u: can't swap, stack too short\n", cmd->line_number);
