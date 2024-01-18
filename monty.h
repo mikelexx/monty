@@ -59,5 +59,6 @@ void nop(cmd_t *cmd);
 void sub(cmd_t *cmd);
 void divide(cmd_t *cmd);
 void mul(cmd_t *cmd);
+void mod(cmd_t *cmd);
 int set_operation_mode(char *opcode, cmd_t *cmd);
 #endif
