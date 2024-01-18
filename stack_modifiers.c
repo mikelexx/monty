@@ -1,12 +1,37 @@
 #include "monty.h"
 /**
+ * rotl - rotates the stack to the top.
+ * @cmd: holds info about the stack.
+ */
+void rotl(cmd_t *cmd)
+{
+	stack_t **h = cmd->head;
+	stack_t *first = *h, *second, *third = *h;
+
+	if (h == NULL || *h == NULL || (*h)->next == NULL)
+		return;
+	if ((*h)->next->next == NULL)
+	{
+		swap(cmd);
+		return;
+	}
+	second = (*h)->next;
+	while (third->next != NULL)
+		third = third->next;
+	first->next = third->next;
+	first->prev = third;
+	third->next = first;
+	second->prev = NULL;
+	*h  = second;
+}
+/**
  * swap -swaps the top two elements of the stack.
  * @cmd: contains the address of head of stack.
  */
 void swap(cmd_t *cmd)
 {
 	stack_t **head = cmd->head;
-	stack_t *first, *middle, *last;
+	stack_t *first, *middle, *third;
 
 	if (cmd == NULL ||
 			head == NULL || *head == NULL || (*head)->next == NULL)
@@ -17,10 +42,10 @@ void swap(cmd_t *cmd)
 	}
 	first = *head;
 	middle = (*head)->next;
-	last = (*head)->next->next;
-	if (last)
-		last->prev = first;
-	first->next = last;
+	third = (*head)->next->next;
+	if (third)
+		third->prev = first;
+	first->next = third;
 	first->prev = middle;
 	middle->next = first;
 	*head = middle;

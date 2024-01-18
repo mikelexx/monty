@@ -62,5 +62,6 @@ void mul(cmd_t *cmd);
 void mod(cmd_t *cmd);
 void pchar(cmd_t *cmd);
 void pstr(cmd_t *cmd);
+void rotl(cmd_t *cmd);
 int set_operation_mode(char *opcode, cmd_t *cmd);
 #endif
