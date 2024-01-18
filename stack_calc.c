@@ -1,5 +1,52 @@
 #include "monty.h"
 /**
+ * mul - multiplies the second top element of \
+ * the stack by the top element of the stack.
+ * Description:The result is stored in the \
+ * second top element of the stack, and the \
+ * top element is removed, so that at the end
+ * @cmd: holds all relevant info needed by add opcode
+ */
+void mul(cmd_t *cmd)
+{
+	stack_t **head =  cmd->head;
+
+	if (cmd == NULL || head == NULL || *head == NULL ||
+			(*head)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't mul, stack too short", cmd->line_number);
+		exit(EXIT_FAILURE);
+	}
+	(*head)->next->n *= (*head)->n;
+	pop(cmd);
+}
+/**
+ * divide - divides the second top element of \
+ * the stack by the top element of the stack.
+ * Description:The result is stored in the \
+ * second top element of the stack, and the \
+ * top element is removed, so that at the end
+ * @cmd: holds all relevant info needed by add opcode
+ */
+void divide(cmd_t *cmd)
+{
+	stack_t **head = cmd->head;
+
+	if (cmd == NULL || head == NULL || *head == NULL ||
+			(*head)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't div, stack too short", cmd->line_number);
+		exit(EXIT_FAILURE);
+	}
+	if ((*head)->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero", cmd->line_number);
+		exit(EXIT_FAILURE);
+	}
+	(*head)->next->n /= (*head)->n;
+	pop(cmd);
+}
+/**
  * sub -  subtracts the top element of the \
  * stack from the second top element of the stack.
  * Description: The result is stored in the second \
