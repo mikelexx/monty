@@ -23,6 +23,22 @@ int set_operation_mode(char *opcode, cmd_t *cmd)
 	return (1);
 }
 /**
+ * check_empty_input - checks if the argument to push is empty input.
+ * @arg: input to be checked.
+ * @line_number: line number that contains the arg.
+ */
+void check_empty_input(char *arg, unsigned int line_number)
+{
+	int len = strlen(arg);
+
+	if (len == 1 && arg[0] == '-')
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+}
+/**
  * parse_input - tokenizes inputs into opcodes and optional \
  * arguments to and stores the information of each line from \
  * data stream to command object.
@@ -52,6 +68,7 @@ int parse_input(char *lineptr, cmd_t *cmd)
 			exit(EXIT_FAILURE);
 		}
 		len = strlen(arg);
+		check_empty_input(arg, cmd->line_number);
 		while (len--)
 		{
 			if (len == 0 && arg[len] == '-')
