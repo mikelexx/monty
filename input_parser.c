@@ -23,6 +23,22 @@ int set_operation_mode(char *opcode, cmd_t *cmd)
 	return (1);
 }
 /**
+ * check_leading_zero - checks if the number has leading zero e.g 075
+ * @arg: string to be checked.
+ * @line_number: line number at which arg was extracted from
+ */
+void check_leading_zero(char *arg, unsigned int line_number)
+{
+	int len  = strlen(arg);
+
+	if (len > 1 && arg[0] == '0')
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+}
+
+/**
  * check_empty_input - checks if the argument to push is empty input.
  * @arg: input to be checked.
  * @line_number: line number that contains the arg.
@@ -69,6 +85,7 @@ int parse_input(char *lineptr, cmd_t *cmd)
 		}
 		len = strlen(arg);
 		check_empty_input(arg, cmd->line_number);
+		check_leading_zero(arg, cmd->line_number);
 		while (len--)
 		{
 			if (len == 0 && arg[len] == '-')
