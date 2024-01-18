@@ -48,7 +48,7 @@ int parse_input(char *lineptr, cmd_t *cmd)
 		arg = strtok(NULL, delim);
 		if (arg == NULL)
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			fprintf(stderr, "L%u: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
 		len = strlen(arg);
@@ -58,7 +58,7 @@ int parse_input(char *lineptr, cmd_t *cmd)
 				break;
 			if (arg[len] < 48 || arg[len] > 57)
 			{
-				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				fprintf(stderr, "L%u: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
 		}

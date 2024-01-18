@@ -28,7 +28,7 @@ void pint(cmd_t *cmd)
 	curr = *head;
 	if (curr == NULL)
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", cmd->line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", cmd->line_number);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", curr->n);
