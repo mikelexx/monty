@@ -65,4 +65,7 @@ void pstr(cmd_t *cmd);
 void rotl(cmd_t *cmd);
 void rotr(cmd_t *cmd);
 int set_operation_mode(char *opcode, cmd_t *cmd);
+void set_stack_mode(cmd_t *cmd);
+void set_queue_mode(cmd_t *cmd);
+void handle_queue_mode(stack_t **new, cmd_t *cmd, stack_t **h);
 #endif

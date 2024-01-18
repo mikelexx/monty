@@ -96,6 +96,11 @@ void push(cmd_t *cmd)
 	{
 		exit(EXIT_FAILURE);
 	}
+	if (*cmd->status == 1)
+	{
+		handle_queue_mode(&new, cmd, h);
+		return;
+	}
 	new->n = cmd->arg;
 	if (*h == NULL)
 	{

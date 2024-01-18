@@ -15,7 +15,8 @@ void run(cmd_t *cmd)
 		{"div", divide}, {"mul", mul},
 		{"mod", mod}, {"pchar", pchar},
 		{"pstr", pstr}, {"rotl", rotl},
-		{"rotr", rotr}
+		{"rotr", rotr}, {"stack", set_stack_mode},
+		{"queue", set_queue_mode}
 	};
 	size_t i = 0;
 	size_t len = sizeof(instructions) / sizeof(instructions[0]);
