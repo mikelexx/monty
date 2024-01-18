@@ -35,7 +35,7 @@ void push(cmd_t *cmd)
 	stack_t **h, *new = NULL;
 
 	h = cmd->head;
-	if (h == NULL)
+	if (cmd == NULL || h == NULL)
 	{
 		fprintf(stderr, "L%d: push integer\n", cmd->line_number);
 		exit(EXIT_FAILURE);
@@ -67,7 +67,7 @@ void pop(cmd_t *cmd)
 	stack_t *tmp = NULL;
 	stack_t **head = cmd->head;
 
-	if (*head == NULL || head == NULL)
+	if (cmd == NULL || *head == NULL || head == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", cmd->line_number);
 		exit(EXIT_FAILURE);
