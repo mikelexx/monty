@@ -1,5 +1,31 @@
 #include "monty.h"
 /**
+ * rotr - rotates the stack to the bottom.
+ * @cmd: holds info about the stack.
+ */
+void rotr(cmd_t *cmd)
+{
+	stack_t **h  = cmd->head;
+	stack_t *first = *h, *second = *h, *third;
+
+	if (h == NULL || *h == NULL || (*h)->next == NULL)
+		return;
+	if ((*h)->next->next == NULL)
+	{
+		swap(cmd);
+		return;
+	}
+	while (third->next != NULL)
+		third = third->next;
+	while (second->next != third)
+		second = second->next;
+	third->next = first;
+	third->prev = first->prev;
+	first->prev = third;
+	second->next = NULL;
+	*h = second;
+}
+/**
  * rotl - rotates the stack to the top.
  * @cmd: holds info about the stack.
  */

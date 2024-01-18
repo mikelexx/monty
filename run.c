@@ -14,7 +14,8 @@ void run(cmd_t *cmd)
 		{"nop", nop}, {"sub", sub},
 		{"div", divide}, {"mul", mul},
 		{"mod", mod}, {"pchar", pchar},
-		{"pstr", pstr}, {"rotl", rotl}
+		{"pstr", pstr}, {"rotl", rotl},
+		{"rotr", rotr}
 	};
 	size_t i = 0;
 	size_t len = sizeof(instructions) / sizeof(instructions[0]);
