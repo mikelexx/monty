@@ -1,5 +1,30 @@
 #include "monty.h"
 /**
+ * swap -swaps the top two elements of the stack.
+ * @cmd: contains the address of head of stack.
+ */
+void swap(cmd_t *cmd)
+{
+	stack_t **head = cmd->head;
+	stack_t *first, *middle, *last;
+
+	if (head == NULL || *head == NULL || (*head)->next == NULL)
+	{
+		fprintf(stderr,
+		"L%u: can't swap, stack too short\n", cmd->line_number);
+		exit(EXIT_FAILURE);
+	}
+	first = *head;
+	middle = (*head)->next;
+	last = (*head)->next->next;
+	if (last)
+		last->prev = first;
+	first->next = last;
+	first->prev = middle;
+	middle->next = first;
+	*head = middle;
+}
+/**
  * push - pushes an element to stack.
  * @cmd: command storing the element and other informations \
  * like line_number on which it's located in bytecode .
