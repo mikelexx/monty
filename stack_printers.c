@@ -3,10 +3,34 @@
  * nop - does nothing.
  * @cmd: object containing nop opcode.
  */
+
 void nop(cmd_t *cmd)
 {
 	(void)cmd;
 }
+
+/**
+ * pchar -prints the first char at the top of stack.
+ * @cmd: holds all the stack containgn the char to \
+ * be printed.
+ */
+void pchar(cmd_t *cmd)
+{
+	stack_t **head = cmd->head;
+
+	if (head == NULL || *head == NULL)
+	{
+		fprintf(stderr, "L%u: can't pchar, stack empty", cmd->line_number);
+		exit(EXIT_FAILURE);
+	}
+	if ((*head)->n < 0 || (*head)->n > 127)
+	{
+		fprintf(stderr, "L%u: can't pchar, value out of range", cmd->line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%c\n", (*head)->n);
+}
+
 /**
  * pall - prints all elements of stack:
  * @cmd: object containing the stack.
