@@ -7,9 +7,12 @@
 void run(cmd_t *cmd)
 {
 
-	instruction_t instructions[] = {{"push", push},
+	instruction_t instructions[] = {
+		{"push", push},
 		{"pall", pall},
-		{"pint", pint}};
+		{"pint", pint},
+		{"pop", pop}
+	};
 	size_t i = 0;
 	size_t len = sizeof(instructions) / sizeof(instructions[0]);
 
