@@ -6,12 +6,14 @@
  */
 void run(cmd_t *cmd)
 {
-	int i = 0;
 
 	instruction_t instructions[] = {{"push", push},
 		{"pall", pall},
 		{"pint", pint}};
-	while (instructions[i].opcode)
+	size_t i = 0;
+	size_t len = sizeof(instructions) / sizeof(instructions[0]);
+
+	while (i < len)
 	{
 		if (strcmp(instructions[i].opcode, cmd->opcode) == 0)
 		{
@@ -20,6 +22,6 @@ void run(cmd_t *cmd)
 		}
 		i++;
 	}
-	printf("L%d: unknown instruction %s", cmd->line_number, cmd->opcode);
+	printf("L%d: unknown instruction %s\n", cmd->line_number, cmd->opcode);
 	exit(EXIT_FAILURE);
 }

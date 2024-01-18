@@ -32,4 +32,3 @@ void push(cmd_t *cmd)
 	new->prev = NULL;
 	*h = new;
 }
-

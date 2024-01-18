@@ -1,5 +1,14 @@
-#ifndef _MAIN_H
-#define _MAIN_H
+#ifndef _MONTY_H
+#define _MONTY_H
+#define  _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <limits.h>
+#include <string.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -9,11 +18,6 @@
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
-#define  _GNU_SOURCE
-#include<stdio.h>
-#include <stdlib.h>
-#include <string.h>
-extern const char *OPCODES[3];
 typedef struct stack_s
 {
         int n;
@@ -22,10 +26,11 @@ typedef struct stack_s
 } stack_t;
 typedef struct cmd_s
 {
-	int arg; 
+	int arg, *status; 
 	char *opcode;
-	int line_number;
-	stack_t **head;
+	unsigned int line_number;
+	stack_t **head, **tail;
+	
 } cmd_t;
 /**
  * struct instruction_s - opcode and its function
@@ -41,9 +46,11 @@ typedef struct instruction_s
         void (*f)(cmd_t *cmd);
 } instruction_t;
 int is_valid_arg(char *arg);
-void parse_input(char *line_ptr,int line_number, stack_t **head);
+int parse_input(char *line_ptr, cmd_t *cmd);
+void process_line(char *lineptr, stack_t **head ,stack_t **tail, int *mode, unsigned int line_number);
 void run(cmd_t *cmd);
 void push(cmd_t *cmd);
 void pall(cmd_t *cmd);
 void pint(cmd_t *cmd);
+int set_operation_mode(char *opcode, cmd_t *cmd);
 #endif

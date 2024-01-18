@@ -30,11 +30,12 @@ void free_list(stack_t **head)
 int main(int argc, char *argv[])
 {
 	char *line_ptr;
-	int line_number = 1;
+	int status = 0;
+	unsigned int line_number = 1;
 	FILE *file = fopen(argv[1], "r");
 	ssize_t chars_read;
 	size_t n = 0;
-	stack_t *head = NULL;
+	stack_t *head = NULL, *tail = NULL;
 
 	if (argc != 2)
 	{
@@ -49,12 +50,12 @@ int main(int argc, char *argv[])
 	}
 	while ((chars_read = getline(&line_ptr, &n, file)) != -1)
 	{
-		parse_input(line_ptr, line_number,  &head);
+		process_line(line_ptr, &head, &tail, &status, line_number);
 		line_number++;
 
 	}
 	fclose(file);
 	free(line_ptr);
 	free_list(&head);
-	return (0);
+	return (EXIT_SUCCESS);
 }

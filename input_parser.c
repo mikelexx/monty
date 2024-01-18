@@ -1,22 +1,48 @@
 #include "monty.h"
 /**
+ * set_operation_mode - sets the operation mode for stack using cmd object.
+ * @cmd: object holding opcode and all the operations related to it.
+ * @opcode: python opcode.
+ * Return: 1 for success else 0.
+ */
+int set_operation_mode(char *opcode, cmd_t *cmd)
+{
+	if (opcode == NULL || opcode[0] == '#')
+		return (0);
+	if (strcmp(opcode, "queue") == 0)
+	{
+		*cmd->status = 1;
+		return (0);
+	}
+
+	if (strcmp(opcode, "stack") == 0)
+	{
+		*cmd->status = 0;
+		return (0);
+	}
+	return (1);
+}
+/**
  * parse_input - tokenizes inputs into opcodes and optional \
  * arguments to and stores the information of each line from \
  * data stream to command object.
  * @lineptr: pointer to line data buffer.
- * @line_number: line number from which data is coming from.
- * @head: head of stack.
+ * @cmd: object storing opcode and its related information.
+ * Return: 1 for success otherwise 0.
  */
-void parse_input(char *lineptr, int line_number, stack_t **head)
+int parse_input(char *lineptr, cmd_t *cmd)
 {
 	const char delim[] = " \t\r\n";
 	char *arg, *opcode;
 	int len;
-	cmd_t cmd;
+	unsigned int line_number;
 
-	cmd.head = head;
-	cmd.line_number = line_number;
+	line_number = cmd->line_number;
+	if (!lineptr)
+		return (0);
 	opcode = strtok(lineptr,  delim);
+	if (set_operation_mode(opcode, cmd) == 0)
+		return (0);
 	if (strcmp(opcode, "push") == 0)
 	{
 		arg = strtok(NULL, delim);
@@ -26,17 +52,20 @@ void parse_input(char *lineptr, int line_number, stack_t **head)
 			exit(EXIT_FAILURE);
 		}
 		len = strlen(arg);
-		while (len > 0)
+		while (len--)
 		{
-			if (arg[len - 1] < 48 || arg[len - 1] > 57)
+			if (len == 0 && arg[len] == '-')
+				break;
+			if (arg[len] < 48 || arg[len] > 57)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
-			len--;
 		}
-		cmd.arg = atoi(arg);
+		cmd->arg = atoi(arg);
+		cmd->opcode = opcode;
+		return (1);
 	}
-	cmd.opcode = opcode;
-	run(&cmd);
+	cmd->opcode = opcode;
+	return (1);
 }
