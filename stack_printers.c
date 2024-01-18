@@ -1,5 +1,13 @@
 #include "monty.h"
 /**
+ * nop - does nothing.
+ * @cmd: object containing nop opcode.
+ */
+void nop(cmd_t *cmd)
+{
+	(void)cmd;
+}
+/**
  * pall - prints all elements of stack:
  * @cmd: object containing the stack.
  */

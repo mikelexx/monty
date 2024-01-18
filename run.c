@@ -13,7 +13,8 @@ void run(cmd_t *cmd)
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
-		{"add", add}
+		{"add", add},
+		{"nop", nop}
 	};
 	size_t i = 0;
 	size_t len = sizeof(instructions) / sizeof(instructions[0]);

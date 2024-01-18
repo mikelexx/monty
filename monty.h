@@ -55,5 +55,6 @@ void pint(cmd_t *cmd);
 void pop(cmd_t *cmd);
 void swap(cmd_t *cmd);
 void add(cmd_t *cmd);
+void nop(cmd_t *cmd);
 int set_operation_mode(char *opcode, cmd_t *cmd);
 #endif
