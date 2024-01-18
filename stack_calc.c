@@ -13,7 +13,8 @@ void add(cmd_t *cmd)
 	stack_t **head = cmd->head;
 	stack_t *first, *second;
 
-	if (head == NULL || *head == NULL || (*head)->next == NULL)
+	if (cmd == NULL || head == NULL ||
+			*head == NULL || (*head)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short", cmd->line_number);
 		exit(EXIT_FAILURE);
