@@ -1,5 +1,24 @@
 #include "monty.h"
 /**
+ * pstr - prints string at top of stack
+ * @cmd: stores integer value for which chars will be printed in that range.
+ */
+void pstr(cmd_t *cmd)
+{
+	stack_t **head = cmd->head;
+
+	if (*head == NULL)
+	{
+		printf("\n");
+	}
+	while (*head && ((*head)->n <= 127 && (*head)->n > 0))
+	{
+		printf("%c", (*head)->n);
+		*head = (*head)->next;
+	}
+	printf("\n");
+}
+/**
  * nop - does nothing.
  * @cmd: object containing nop opcode.
  */
