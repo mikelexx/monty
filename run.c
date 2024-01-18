@@ -22,6 +22,7 @@ void run(cmd_t *cmd)
 		}
 		i++;
 	}
-	printf("L%d: unknown instruction %s\n", cmd->line_number, cmd->opcode);
+	fprintf(stderr,
+			"L%d: unknown instruction %s\n", cmd->line_number, cmd->opcode);
 	exit(EXIT_FAILURE);
 }

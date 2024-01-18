@@ -11,7 +11,7 @@ void push(cmd_t *cmd)
 	h = cmd->head;
 	if (h == NULL)
 	{
-		printf("L%d: push integer\n", cmd->line_number);
+		fprintf(stderr, "L%d: push integer\n", cmd->line_number);
 		exit(EXIT_FAILURE);
 	}
 	new = malloc(sizeof(stack_t));
